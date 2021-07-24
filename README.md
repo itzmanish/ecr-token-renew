@@ -32,5 +32,5 @@ The tool is mainly configured through environment variables. These are:
 # Installing instruction
 
 ```bash
-$ go get github.com/itzmanish/ecr-token-renew/cmd
+$ go install github.com/itzmanish/ecr-token-renew@latest
 ```
