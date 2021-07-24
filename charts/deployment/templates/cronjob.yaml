@@ -1,0 +1,40 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{include "chart.fullname" .}}
+  labels: {{- include "chart.labels" . | nindent 4}}
+spec:
+  schedule: '0 */6 * * *'
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600 
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: {{.Chart.Name}}
+            image: '{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}'
+            imagePullPolicy: {{.Values.image.pullPolicy}}
+            env:
+              - name: DOCKER_SECRET_NAME
+                value: {{.Values.dockerSecretName}}
+              - name: TARGET_NAMESPACE
+                value: {{$.Release.Namespace}}
+              - name: AWS_REGION
+                valueFrom:
+                  configMapKeyRef:
+                    name: {{.Values.configMapKeyRef}}
+                    key: AWS_REGION
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  configMapKeyRef:
+                    name: {{.Values.configMapKeyRef}}
+                    key: AWS_ACCESS_KEY_ID
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  configMapKeyRef:
+                    name: {{.Values.configMapKeyRef}}
+                    key: AWS_SECRET_ACCESS_KEY

@@ -1,8 +1,8 @@
 image:
-  repository: ecr-token-renew:latest
+  repository: itzmanish/ecr-token-renew
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 namespace: ""
 configMapKeyRef: "backend"
