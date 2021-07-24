@@ -24,6 +24,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.1.0
         with:
           charts_dir: deployment
-          charts_repo_url: https://itzmanish.github.io/ecr-token-renew/deployment
+          charts_repo_url: https://itzmanish.github.io/ecr-token-renew/deployment/chart
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
