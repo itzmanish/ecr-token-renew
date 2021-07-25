@@ -13,8 +13,8 @@ ecr-token-renew` to see the charts.
 
 To install the ecr-token-renew chart:
 
-    helm install my-ecr-token-renew ecr-token-renew/ecr-token-renew
+    helm install my-ecr-token-renew ecr-token-renew/chart
 
 To uninstall the chart:
 
-    helm delete my-ecr-token-renew
+    helm uninstall  my-ecr-token-renew
