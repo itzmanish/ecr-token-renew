@@ -4,10 +4,6 @@ AWS Elastic Container Registry (ECR) provides a cost-effective private registry 
 However, ECR Docker credentials
 [expire every 12 hours](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html).
 
-To work around this, I created this small tool to automatically refresh the secret in Kubernetes.
-It deploys as a cron job and ensures that your Kubernetes cluster
-will always be able to pull Docker images from ECR.
-
 ## Docker Images
 
 The latest images are:
@@ -34,3 +30,25 @@ The tool is mainly configured through environment variables. These are:
 ```bash
 $ go install github.com/itzmanish/ecr-token-renew@latest
 ```
+
+## Helm Usage
+
+[Helm](https://helm.sh) must be installed to use the charts.  Please refer to
+Helm's [documentation](https://helm.sh/docs) to get started.
+
+Once Helm has been set up correctly, add the repo as follows:
+
+  helm repo add ecr-token-renew https://itzmanish.github.io/ecr-token-renew
+
+If you had already added this repo earlier, run `helm repo update` to retrieve
+the latest versions of the packages.  You can then run `helm search repo
+ecr-token-renew` to see the charts.
+
+To install the ecr-token-renew chart:
+
+    helm install my-ecr-token-renew ecr-token-renew/chart
+
+To uninstall the chart:
+
+    helm uninstall  my-ecr-token-renew
+
