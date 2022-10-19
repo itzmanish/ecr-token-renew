@@ -3,6 +3,16 @@ entries:
   chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-10-19T06:25:16.623784843Z"
+    description: A Helm chart for deploying ecr token renew service
+    digest: 345f026e2f800d55488a1639a4f8c9747b5ab2c9fbe1b91c858de2114dd99880
+    name: chart
+    type: application
+    urls:
+    - https://github.com/itzmanish/ecr-token-renew/releases/download/chart-0.1.3/chart-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-07-24T12:55:53.667556979Z"
     description: A Helm chart for deploying ecr token renew service
     digest: 5bf126167beaa6a616068f5fb7bb9163197e65c4fdaef8db9887f0032b50c895
