@@ -47,6 +47,10 @@ ecr-token-renew` to see the charts.
 To install the ecr-token-renew chart:
 
     helm install my-ecr-token-renew ecr-token-renew/chart
+    
+Note: you need to override `configMapKeyRef` key with correct configmap value
+where your AWS credentials are present. you can always append `-f override.yaml`
+on the above command.
 
 To uninstall the chart:
 
