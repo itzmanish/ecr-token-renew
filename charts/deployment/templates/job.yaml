@@ -3,33 +3,35 @@ kind: Job
 metadata:
   name: {{include "chart.fullname" .}}
   labels: {{- include "chart.labels" . | nindent 4}}
-spec: 
-  template: 
-    metadata: 
+spec:
+  template:
+    metadata:
       name: {{include "chart.fullname" .}}
-    spec: 
+    spec:
       restartPolicy: OnFailure
       containers:
-      - name: {{.Chart.Name}}
-        image: '{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}'
-        imagePullPolicy: {{.Values.image.pullPolicy}}
-        env:
-          - name: DOCKER_SECRET_NAME
-            value: {{.Values.dockerSecretName}}
-          - name: TARGET_NAMESPACE
-            value: {{$.Release.Namespace}}
-          - name: AWS_REGION
-            valueFrom:
-              configMapKeyRef:
-                name: {{.Values.configMapKeyRef}}
-                key: AWS_REGION
-          - name: AWS_ACCESS_KEY_ID
-            valueFrom:
-              configMapKeyRef:
-                name: {{.Values.configMapKeyRef}}
-                key: AWS_ACCESS_KEY_ID
-          - name: AWS_SECRET_ACCESS_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: {{.Values.configMapKeyRef}}
-                key: AWS_SECRET_ACCESS_KEY
+        - name: {{.Chart.Name}}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{.Values.image.pullPolicy}}
+          env:
+            - name: DOCKER_SECRET_NAME
+              value: {{.Values.dockerSecretName}}
+            - name: TARGET_NAMESPACE
+              value: {{$.Release.Namespace}}
+            - name: DOCKER_REGISTRIES
+              value: {{.Values.dockerRegisteries}}
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: {{.Values.configMapKeyRef}}
+                  key: AWS_REGION
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: {{.Values.configMapKeyRef}}
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: {{.Values.configMapKeyRef}}
+                  key: AWS_SECRET_ACCESS_KEY

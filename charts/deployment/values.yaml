@@ -7,6 +7,7 @@ image:
 namespace: ""
 configMapKeyRef: "backend"
 dockerSecretName: ""
+dockerRegisteries: "" # multiple comma seperated registeries supported
 nameOverride: ""
 fullnameOverride: ""
 
